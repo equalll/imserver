@@ -85,6 +85,7 @@ public class ChartController extends BaseController {
         clientMsg.setData(chatMsg);
 
         //将信息转为json
+
         msg = gson.toJson(clientMsg);
 
         //推送请求
