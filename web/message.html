@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发送消息</title>
+
+    <!-- 最新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="sco/css/scojs.css">
+    <link rel="stylesheet" href="sco/css/sco.message.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="sco/js/sco.message.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            //$.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
+            $.getJSON("tags.json", function (data) {
+
+                $.each(data.tags, function (i, n) {
+
+                    $("#select_tags").append("<option value='" + n.tagId + "'>" + n.name + "</option>")
+                });
+
+            });
+
+
+            $(":radio").click(function () {
+                var push_type = $(this).val();
+
+                if (push_type == 2)
+                    $("#select_tags").show();
+                else
+                    $("#select_tags").hide();
+            });
+
+
+            $("#btnSend").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: 'sennotification',//提交的URL
+                    data: $('#notification_form').serialize(), // 要提交的表单,必须使用name属性
+                    success: function (data) {
+
+                        if (data.code == 1) {
+                            $.scojs_message('This is an info message1', $.scojs_message.TYPE_OK);
+                        }
+                        else {
+                            $.scojs_message('This is an info message', $.scojs_message.TYPE_ERROR);
+                            console.log()
+                        }
+
+                    },
+                    error: function (request) {
+                        alert("Connection error");
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">后台</a>
+    </div>
+
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#nt" data-toggle="tab"><i class="glyphicon glyphicon-volume-up"> 通知</i></a></li>
+        <li><a href="#msg" data-toggle="tab">消息</a></li>
+        <li><a href="#rich" data-toggle="tab">富媒体 </a></li>
+        <li><a href="#update" data-toggle="tab">APP升级</a></li>
+    </ul>
+
+    <div class="tab-content" style="margin-top: 20px">
+        <div class="tab-pane fade in active" id="nt">
+
+            <form id="notification_form" class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label for="txtTitle" class="col-sm-2 control-label">标题(可选)</label>
+
+                    <div class="col-sm-5">
+                        <input id="txtTitle" name="title" type="text" class="form-control" placeholder="标题">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="txtContent" class="col-sm-2 control-label">消息内容</label>
+
+                    <div class="col-sm-5">
+                        <textarea id="txtContent" name="description" class="form-control" placeholder="消息内容"
+                                  rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="chkDeviceType" class="col-sm-2 control-label">设备范围</label>
+
+                    <div class="col-sm-5">
+                        <div class="checkbox">
+                            <input type="checkbox" id="chkDeviceType" name="device_type" value="3" checked="checked"
+                                   disabled="disabled">
+                            <img src="imgs/push-icon-and.png" alt="android">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pushType" class="col-sm-2 control-label">用户范围</label>
+
+                    <div class="col-sm-5">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="push_type" id="all" value="3" checked>
+                                所有人
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="push_type" id="tags" value="2">
+                                广播组
+                            </label>
+
+                        </div>
+                        <select id="select_tags" name="tag" class="form-control btn-group"
+                                style="display: none;"></select>
+
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px">
+                    <label class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-5">
+                        <button id="btnSend" type="button" class="btn btn-default btn-lg btn-block">发送</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="tab-pane fade" id="msg">...</div>
+        <div class="tab-pane fade" id="rich">...</div>
+        <div class="tab-pane fade" id="update">update</div>
+    </div>
+</div>
+</body>
+</html>

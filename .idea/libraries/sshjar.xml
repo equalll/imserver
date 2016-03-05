@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ssh整合jar包">
+    <CLASSES>
+      <root url="file://G:/常用软件/软件/hpssh/ssh整合jar包" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://G:/常用软件/软件/hpssh/ssh整合jar包" recursive="false" />
+  </library>
+</component>

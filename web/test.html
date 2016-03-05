@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试</title>
+
+    <!-- 最新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="sco/css/scojs.css">
+    <link rel="stylesheet" href="sco/css/sco.message.css">
+
+    <script src="jw/jwplayer.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="sco/js/sco.message.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+
+            //$.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
+//	$.getJSON("tags.json",function(data){
+//
+//			$.each(data.tags,function(i,n){
+//
+//				$("#select_tags").append("<option value='"+n.tagId+"'>"+n.name+"</option>")
+//			});
+//
+//		});
+
+
+            function initPlayer(url) {
+                jwplayer('player').setup({
+                    flashplayer: 'jw/jwplayer.flash.swf',
+                    file: url,
+                    width: 980,
+                    height: 350,
+                    autostart: true,
+                    dock: false
+                });
+            }
+
+            $("#btnUrl").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: 'lesson/url',//提交的URL
+                    success: function (data) {
+
+                        console.log(data);
+
+                        initPlayer(data);
+
+                    },
+                    error: function (request) {
+                        alert("Connection error");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">后台</a>
+    </div>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+    <button id="btnUrl" class="btn">getUrl</button>
+    <div id="player"></div>
+</div>
+</body>
+</html>
