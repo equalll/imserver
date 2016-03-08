@@ -233,4 +233,45 @@ public class LoginController extends BaseController {
         UserTokenCache.put(token, memberid);
         return token;
     }
+
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseRespMsg register(String email, String pwd) {
+        //邮箱或者密码为空
+        if (StringUtils.isEmpty(email) || StringUtils.isEmpty(pwd)) {
+
+            BaseRespStrMsg msg = new BaseRespStrMsg();
+
+            msg.setStatus(BaseRespMsg.FAIL);
+            msg.setMsg("请输入邮箱和密码");
+
+            System.out.println("----------->login邮箱或者密码为空:" + msg);
+            return msg;
+        }
+
+        //通过邮箱和密码获取会员信息
+        Member member = this.memberService.getMemberByEmailAndPwd(email, pwd);
+
+        BaseRespStrMsg msg = new BaseRespStrMsg();
+        if (null != member) {
+            msg.setStatus(BaseRespMsg.FAIL);
+            msg.setMsg("该会员已注册，请直接登陆...");
+
+            System.out.println("----------->login通过会员已经注册:" + msg);
+            return msg;
+        }
+
+        //保存信息到数据库中
+        memberService.addMember(email, pwd);
+
+        //创建响应信息
+        msg.setMsg("注册成功");
+        msg.setStatus(1);
+        msg.setData("注册成功");
+
+        System.out.println("-------------->" + msg);
+
+        return msg;
+    }
 }

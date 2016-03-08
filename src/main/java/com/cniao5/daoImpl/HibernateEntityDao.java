@@ -48,6 +48,7 @@ public class HibernateEntityDao<T, PK extends Serializable> extends HibernateDao
 
     /**
      * 注入sessionFactory
+     *
      * @param sessionFactory
      */
     @Resource
@@ -122,6 +123,8 @@ public class HibernateEntityDao<T, PK extends Serializable> extends HibernateDao
      */
     public void save(T entity) {
         getHibernateTemplate().save(entity); //.saveOrUpdate(entity);
+
+        System.out.println("-------------->member 已经保存");
     }
 
     /**
@@ -291,6 +294,7 @@ public class HibernateEntityDao<T, PK extends Serializable> extends HibernateDao
 
     /**
      * 取得对象的主键值,辅助函数.
+     *
      * @param entityClass
      * @param entity
      * @return
@@ -308,6 +312,7 @@ public class HibernateEntityDao<T, PK extends Serializable> extends HibernateDao
 
     /**
      * 取得对象的主键名,辅助函数
+     *
      * @param clazz
      * @return
      */

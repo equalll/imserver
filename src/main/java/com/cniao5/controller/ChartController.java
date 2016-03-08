@@ -28,7 +28,6 @@ public class ChartController extends BaseController {
 
     /**
      * 注入pushMsgService
-     *
      */
     @Resource
     private PushMsgService pushMsgService;
@@ -41,6 +40,7 @@ public class ChartController extends BaseController {
 
     /**
      * 向好友发送消息
+     *
      * @param memberId
      * @param friendId
      * @param msg
@@ -115,6 +115,8 @@ public class ChartController extends BaseController {
             respMsg.setStatus(BaseRespMsg.SUCCESS);
             respMsg.setMsg(BaseRespMsg.SUCCESS_STR);
             respMsg.setData(msg);
+            System.out.println("---------------------->ChartController:信息推送到了推送服务器");
+
         } catch (ChannelClientException e) {
             respMsg.setStatus(BaseRespMsg.FAIL);
             respMsg.setMsg(e.getMessage());

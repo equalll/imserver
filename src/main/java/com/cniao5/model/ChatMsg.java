@@ -2,9 +2,9 @@ package com.cniao5.model;
 
 /**
  * 聊天信息
- * 
+ *
  * @author sony
- * 
+ *
  */
 public class ChatMsg {
 

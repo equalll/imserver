@@ -11,9 +11,6 @@ public class Msg implements Serializable {
 
 	private static final long serialVersionUID = 5457054359636770299L;
 
-
-
-
 	private Integer push_type;
 
 	private String tag;

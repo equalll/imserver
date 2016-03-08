@@ -423,5 +423,42 @@ public class Member {
         this.pinyin = pinyin;
     }
 
-
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pinyin='" + pinyin + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", registeTime=" + registeTime +
+                ", introducerId=" + introducerId +
+                ", status=" + status +
+                ", creator='" + creator + '\'' +
+                ", modifier='" + modifier + '\'' +
+                ", modifiedTime=" + modifiedTime +
+                ", currentIntergration=" + currentIntergration +
+                ", currentAccount=" + currentAccount +
+                ", currentGrade=" + currentGrade +
+                ", mobile='" + mobile + '\'' +
+                ", qq='" + qq + '\'' +
+                ", focusTechnology='" + focusTechnology + '\'' +
+                ", interest='" + interest + '\'' +
+                ", graduated='" + graduated + '\'' +
+                ", gegree='" + gegree + '\'' +
+                ", profession='" + profession + '\'' +
+                ", company='" + company + '\'' +
+                ", post='" + post + '\'' +
+                ", workYear=" + workYear +
+                ", introSelf='" + introSelf + '\'' +
+                ", accountType=" + accountType +
+                ", headbig='" + headbig + '\'' +
+                ", headmid='" + headmid + '\'' +
+                ", headsmall='" + headsmall + '\'' +
+                '}';
+    }
 }
