@@ -304,7 +304,7 @@ public class FriendController extends BaseController {
 
         System.out.printf(msg);
 
-        //推动请求
+        //推送请求
         PushChannel pushChannel = pushChannelService.getPushChannelByMemberId(addRequestMsg.getFromMemberId());
         PushUnicastMessageRequest request = new PushUnicastMessageRequest();
         request.setUserId(pushChannel.getUserId());

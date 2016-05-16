@@ -235,6 +235,12 @@ public class LoginController extends BaseController {
     }
 
 
+    /**
+     * 用户注册
+     * @param email
+     * @param pwd
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public BaseRespMsg register(String email, String pwd) {
