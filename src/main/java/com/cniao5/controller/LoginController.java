@@ -241,7 +241,7 @@ public class LoginController extends BaseController {
      * @param pwd
      * @return
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public BaseRespMsg register(String email, String pwd) {
         //邮箱或者密码为空
